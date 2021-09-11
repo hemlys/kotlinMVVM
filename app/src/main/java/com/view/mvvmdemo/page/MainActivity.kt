@@ -27,7 +27,7 @@ import org.json.JSONObject
 class MainActivity : AppCompatActivity() {
     private val mVersionModel: VersionModel by viewModel()
     private val mPostsViewModel: PostsViewModel by viewModel()
-    private var dialog: LoadingIndicatorDialog? = null
+    private lateinit var dialog: LoadingIndicatorDialog
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
