@@ -1,0 +1,4 @@
+<resources>
+    <string name="app_name">mvvmdemo</string>
+    <string name="prompt1">Loading...</string>
+</resources>
