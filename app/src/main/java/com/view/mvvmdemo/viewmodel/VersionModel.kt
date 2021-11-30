@@ -5,6 +5,7 @@ import androidx.lifecycle.MutableLiveData
 import androidx.lifecycle.viewModelScope
 import com.view.mvvmdemo.Interactor.VersionInteractor
 import com.view.mvvmdemo.bean.PostsVS
+import com.view.mvvmdemo.bean.versionBean
 import com.view.mvvmdemo.core.mapper.versionVMMapper
 import com.view.mvvmdemo.core.interactor.Interactor
 import com.view.mvvmdemo.core.platform.BaseViewModel
@@ -21,7 +22,6 @@ class VersionModel(
     private val mViewState = MutableLiveData<PostsVS>()
     private val mversionVMMapper by lazy { versionVMMapper() }
 
-
     fun getVersion() {
         viewModelScope.launch {
             mViewState.value = PostsVS.ShowLoader(true)
@@ -29,7 +29,12 @@ class VersionModel(
                 io {
                     versionInteractor.execute(Interactor.None)
                         .collect {
-                            ui { mViewState.value = PostsVS.Version(mversionVMMapper.map(it)) }
+                            ui {
+
+//                                mViewState.value = PostsVS.Version(mversionVMMapper.map(it))
+//                                _uiState.postValue(it)
+                                mViewState.postValue(PostsVS.Version(it))
+                            }
                         }
                 }
             } catch (e: Exception) {
